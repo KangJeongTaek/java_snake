@@ -14,25 +14,25 @@ public class KeyHandler implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        if(code == KeyEvent.VK_UP){
+        if(code == KeyEvent.VK_UP && !downPressed){
             downPressed = false;
             rightPressed = false;
             leftPressed = false;
             upPressed = true;
         }
-        if(code == KeyEvent.VK_DOWN){
+        if(code == KeyEvent.VK_DOWN && !upPressed){
             upPressed = false;
             rightPressed = false;
             leftPressed = false;
             downPressed = true;
         }
-        if(code == KeyEvent.VK_RIGHT){
+        if(code == KeyEvent.VK_RIGHT && !leftPressed){
             leftPressed = false;
             upPressed = false;
             downPressed = false;
             rightPressed = true;
         }
-        if(code == KeyEvent.VK_LEFT){
+        if(code == KeyEvent.VK_LEFT && !rightPressed){
             upPressed = false;
             downPressed = false;
             rightPressed = false;

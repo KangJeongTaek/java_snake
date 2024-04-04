@@ -28,9 +28,6 @@ public class Snake{
     }
     public void update(){
         if(KeyHandler.upPressed){
-            KeyHandler.downPressed = false;
-            KeyHandler.rightPressed = false;
-            KeyHandler.leftPressed = false;
             timer ++;
             if(timer == 4){
                 bl.get(0).y -= Block.SIZE;
