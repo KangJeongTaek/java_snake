@@ -13,7 +13,9 @@ public class Snake{
     public ArrayList <Block> bl = new ArrayList<>();
     public ArrayList <Block> tempBl = new ArrayList<>();
     public boolean targetEat;
-
+    int timer;
+    int timer2;
+    
     public Snake(){
         for(int i =0; i<5; i++){
             bl.add(i,new Block(Color.blue));
@@ -21,14 +23,7 @@ public class Snake{
         for(int i = 0; i<5; i ++){
             tempBl.add(i,new Block(Color.blue));
         }
-        // b[0] = new Block(Color.BLUE);
-        // b[1] = new Block(Color.BLUE);
-        // b[2] = new Block(Color.blue);
-        // b[3] = new Block(Color.blue);
-        // tempB[0] = new Block(Color.BLUE);
-        // tempB[1] = new Block(Color.blue);
-        // tempB[2] = new Block(Color.blue);
-        // tempB[3] = new Block(Color.blue);
+
 
     }
     public void setXY(int x, int y){
@@ -36,45 +31,30 @@ public class Snake{
             bl.get(i).x = x + Block.SIZE * i;
             bl.get(i).y = y;
         }
-        // b[0].x = x;
-        // b[0].y = y;
-        // b[1].x = x + Block.SIZE;
-        // b[1].y = y;
-        // b[2].x = x + Block.SIZE *2;
-        // b[2].y = y;
-        // b[3].x = x + Block.SIZE *3;
-        // b[3].y = y;
     }
     public void update(){
         if(KeyHandler.upPressed){
-            bl.get(0).y -= Block.SIZE/4;
-            for(int i = 1;i<bl.size(); i ++){
-                if(bl.get(i).x<bl.get(0).x){
-                    bl.get(i).x += Block.SIZE /4;
-                }else if (bl.get(i).x> bl.get(0).x){
-                    bl.get(i).x -= Block.SIZE/4;
-                }else{
-                    bl.get(i).y -= Block.SIZE /4;
+            timer ++;
+            timer2 ++;
+            if(timer == 4){
+                bl.get(0).y -= Block.SIZE;
+                for(int i = 0;i<bl.size();i++){
+                    if(timer2 == 4){
+                        System.out.println("안녕");
+                        timer2 = 0;
+                    }
                 }
+                timer = 0;
+                
             }
-            // b[0].y -= Block.SIZE/4;
-            // for(int i = 1 ; i<b.length;i++){
-            //     if(b[i].x < b[0].x){
-            //         b[i].x += Block.SIZE /4;
-            //     }else if(b[i].x > b[0].x){
-            //         b[i].x -= Block.SIZE /4;
-            //     }
-            //     else{
-            //         b[i].y -= Block.SIZE /4;
-            //     }
-            // } 
-        }
+        }  
         if(KeyHandler.leftPressed){
             bl.get(0).x -= Block.SIZE/4;
+            int y = bl.get(0).y;
             for(int i = 1;i<bl.size(); i ++){
-                if(bl.get(i).y<bl.get(0).y){
+                if(bl.get(i).y<y){
                     bl.get(i).y += Block.SIZE /4;
-                }else if (bl.get(i).y> bl.get(0).y){
+                }else if (bl.get(i).y> y){
                     bl.get(i).y -= Block.SIZE/4;
                 }else{
                     bl.get(i).x -= Block.SIZE /4;
@@ -83,10 +63,11 @@ public class Snake{
         }
         if(KeyHandler.rightPressed){
             bl.get(0).x += Block.SIZE/4;
+            int y = bl.get(0).y;
             for(int i = 1;i<bl.size(); i ++){
-                if(bl.get(i).y<bl.get(0).y){
+                if(bl.get(i).y<y){
                     bl.get(i).y += Block.SIZE /4;
-                }else if (bl.get(i).y> bl.get(0).y){
+                }else if (bl.get(i).y> y){
                     bl.get(i).y -= Block.SIZE/4;
                 }else{
                     bl.get(i).x += Block.SIZE /4;
@@ -95,19 +76,22 @@ public class Snake{
         }
         if(KeyHandler.downPressed){
             bl.get(0).y += Block.SIZE/4;
+            int x = bl.get(0).x;
             for(int i = 1;i<bl.size(); i ++){
-                if(bl.get(i).x<bl.get(0).x){
+                if(bl.get(i).x<x){
                     bl.get(i).x += Block.SIZE /4;
-                }else if (bl.get(i).x> bl.get(0).x){
+                }else if (bl.get(i).x> x){
                     bl.get(i).x -= Block.SIZE/4;
                 }else{
                     bl.get(i).y += Block.SIZE /4;
                 }
             }
         }
-        if(bl.get(0).x == PlayManager.targetBlock_X && bl.get(0).y == PlayManager.targetBlock_Y);
-            bl.add(PlayManager.targetBlock);
+   
+        if(bl.get(0).y<=PlayManager.targetBlock_Y&&bl.get(0).y+Block.SIZE>=PlayManager.targetBlock_Y&& bl.get(0).x <= PlayManager.targetBlock_X&& bl.get(0).x +Block.SIZE>=PlayManager.targetBlock_X){
+            System.out.println(PlayManager.targetBlock_X);
             targetEat = true;
+        }
     }
         
     
