@@ -34,17 +34,11 @@ public class Snake{
     }
     public void update(){
         if(KeyHandler.upPressed){
-            timer ++;
-            timer2 ++;
             if(timer == 4){
                 bl.get(0).y -= Block.SIZE;
-                for(int i = 0;i<bl.size();i++){
-                    if(timer2 == 4){
-                        System.out.println("안녕");
-                        timer2 = 0;
-                    }
-                }
-                timer = 0;
+                bl.get(1).x = bl.get(0).x;
+                bl.get(1).y = bl.get(0).y;
+               
                 
             }
         }  
