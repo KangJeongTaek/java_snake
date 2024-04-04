@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-    public static boolean upPressed, downPressed,leftPressed,rightPressed,pausePressed;
+    public static boolean upPressed, downPressed,leftPressed,rightPressed,pausePressed,restartPressed;
 
     @Override
     public void keyTyped(KeyEvent e){
@@ -44,6 +44,9 @@ public class KeyHandler implements KeyListener{
             }else{
                 pausePressed = false;
             }
+        }
+        if((code == KeyEvent.VK_R && PlayManager.game_over) || (code == KeyEvent.VK_R &&PlayManager.contact)){
+            restartPressed = true;
         }
     }
 
