@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints.Key;
 import java.util.Random;
 
 import snake.Block;
@@ -84,13 +83,13 @@ public class PlayManager {
 
         
         // 게임 오버 체크
-        if(snake.bl.get(0).x == GamePanel.WIDTH || snake.bl.get(0).x == 0 || snake.bl.get(0).y == GamePanel.HEIGHT || snake.bl.get(0).y == 0){
+        if(snake.bl.get(0).x == GamePanel.WIDTH || snake.bl.get(0).x == 0 || snake.bl.get(0).y == GamePanel.HEIGHT || snake.bl.get(0).y == 0 || contact){
             game_over = true;
         }
        
 
         // 게임 오버
-        if(game_over || contact){
+        if(game_over){
             g2.drawString("Game Over", WIDTH/2 - 50, HEIGHT/2);
             KeyHandler.downPressed = false;
             KeyHandler.leftPressed = false;
